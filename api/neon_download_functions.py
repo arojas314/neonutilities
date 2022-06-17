@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Originalyy created on Mon Apr  8 08:18:00 2019
+Originaly created on Mon Apr  8 08:18:00 2019
 @author: bhass
 
 Updated by AR 9.20
