@@ -117,3 +117,13 @@ autodoc_default_options = {
     "members": True,  # Document all functions/members
     "special-members": "__init__",
 }
+
+"""
+IMPORTANT NOTES ABOUT PUBLISHING TO GITHUB PAGES
+-----------------------------------------------
+1. Must have an empty file called .nojekell in this directory.
+2. Include an index.html file to redirect to the actual html build
+   Something like this in that file (yes, only one line)...
+        <meta http-equiv="Refresh" content="0;url=_build/html/"/>
+3.
+"""
