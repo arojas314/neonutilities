@@ -6,7 +6,7 @@
 ![](https://github.com/blaylockbk/goes2go/blob/main/docs/_static/goes2go_logo_100dpi.png?raw=true)
 -->
 
-# Download and display GOES-East and GOES-West data
+# Download and display NEON data
 
 <!-- Badges -->
 
@@ -18,8 +18,6 @@
 </div>
 
 The National Science Foundation's National Ecological Observatory Network (NEON) offers ecological data from sites across the United States through the [NEON Data Portal](https://data.neonscience.org/). **neonutilities** is a python package that makes it easy to find and download data to your local computer. We also provide some additional utilities to visualize and analyze the data.
-
----
 
 <!-- <br>
 
