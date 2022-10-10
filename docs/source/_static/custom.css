@@ -1,0 +1,18 @@
+/* Add custom css styles to override original theme*/
+
+.bd-header.navbar-light#navbar-main {
+    background-color:  #bbd0ff!important;
+  }
+  
+h1, h2 {
+  color: #130654 !important;
+}
+
+/* Trying to change  function background colors */
+dl dt:target {
+  background-color: #f1f5ff!important;
+}
+
+.sig{
+  background-color: #f1f5ff!important;
+}
