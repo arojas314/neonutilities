@@ -26,10 +26,13 @@ def list_available_urls(product,site):
     ------
     list_available_urls_by_range('DP1.00024.001, 'HARV')
     """
+
+    data_urls = []
     r = requests.get("http://data.neonscience.org/api/v0/products/" + product)
     for i in range(len(r.json()['data']['siteCodes'])):
         if site in r.json()['data']['siteCodes'][i]['siteCode']:
             data_urls=r.json()['data']['siteCodes'][i]['availableDataUrls']
+
     if len(data_urls)==0:
         print('WARNING: no urls found for product ' + product + ' at site ' + site)
     else:
@@ -50,12 +53,14 @@ def list_available_urls_by_year(product,site,year):
     
     Usage
     ------
-    list_available_urls_by_range('DP1.00024.001, 'HARV', '2019')
+    list_available_urls_by_year('DP1.00024.001, 'HARV', '2019')
     """
     r = requests.get("http://data.neonscience.org/api/v0/products/" + product)
+    all_data_urls = []
     for i in range(len(r.json()['data']['siteCodes'])):
         if site in r.json()['data']['siteCodes'][i]['siteCode']:
             all_data_urls=r.json()['data']['siteCodes'][i]['availableDataUrls']
+
     data_urls = [url for url in all_data_urls if year in url]
     if len(data_urls)==0:
         print('WARNING: no urls found for product ' + product + ' at site ' + site + ' in year ' + year)
@@ -87,20 +92,22 @@ def list_available_urls_by_range(product,site,start,end):
     dend = datetime.strptime(end, "%Y-%m")
 
     r = requests.get("http://data.neonscience.org/api/v0/products/" + product)
+    
+    data_urls = []
     for i in range(len(r.json()['data']['siteCodes'])):
         if site in r.json()['data']['siteCodes'][i]['siteCode']:
             all_data_urls=r.json()['data']['siteCodes'][i]['availableDataUrls']
             allmonths=r.json()['data']['siteCodes'][i]['availableMonths']
-            data_urls = []
             for j in range(len(allmonths)):
                 if dstart <= datetime.strptime(allmonths[j], "%Y-%m") <= dend:
                     data_urls.append(all_data_urls[j])
+
     if len(data_urls)==0:
-        print('WARNING: no urls found for product ' + product + ' at site ' + site + ' in year date range.')
+        print('WARNING: no urls found for product ' + product + ' at site ' + site + ' for given dates.')
     else:
         return data_urls
 
-def download_urls(urls, download_folder_root, package=None, zip=False,meta_only=None):
+def download_urls(urls, download_folder_root=None, package=None, zip=False,meta_only=None):
     """
     Download data using a list of urls.
 
@@ -121,8 +128,15 @@ def download_urls(urls, download_folder_root, package=None, zip=False,meta_only=
     ------
     download_urls(url_list,"data",package = "basic", zip=False)
     """
+    # If url is string, put in list for easier handling
     if isinstance(urls, str):
         urls = [urls]
+    
+    # Root output folder
+    if download_folder_root is None:
+        download_folder_root=os.getcwd()
+    elif not os.path.exists(download_folder_root):
+        os.makedirs(download_folder_root)
     
     ## 
     if meta_only is not None:
@@ -169,13 +183,12 @@ def download_urls(urls, download_folder_root, package=None, zip=False,meta_only=
             # Download all files for month
             
             # create month directory
-            month = url.split('/')[-1]
-            download_folder = os.path.join(download_folder_root, month)
+            fn_string = r.json()['data']['siteCode'] + "." + r.json()['data']['productCode'] + "." + r.json()['data']['month']
+            download_folder = os.path.join(download_folder_root, fn_string)
             if not os.path.exists(download_folder):
                 os.makedirs(download_folder)
             
             for i in range(len(files)):
-                print('downloading ' + files[i]['name'] + ' to ' + download_folder)
                 if zip==False:
                     if '.zip' not in files[i]['name']:
                         outf = os.path.join(download_folder, files[i]['name'])
@@ -187,8 +200,9 @@ def download_urls(urls, download_folder_root, package=None, zip=False,meta_only=
 
 
 
-def download_data(product, site, year=None, start=None, end=None,
-                  download_folder_root=None, package=None, zip=False, meta_only=None):
+def download_data(product, site, start=None, end=None,
+                year=None, download_folder=None,
+                package=None, zip=False, meta_only=None):
 
     """
     Download data from a given data product 
@@ -199,20 +213,25 @@ def download_data(product, site, year=None, start=None, end=None,
         The data product code (eg. 'DP1.00024.001')
     site: str
         The 4-digit NEON site code (eg. 'HARV', 'WERF')
+    start: str, optional
+        Start date in YYYY-MM format (e.g. '2019-01')
+        Downloads entire month worth of data. Use with end parameter to download data from a range
+    end: str, optional
+        End date in YYYY-MM format (e.g. '2020-12')
+        Used in conjunction with start parameter to download a range worth of available data
     year: str, optional
         Year in YYYY format (e.g. '2019')
         Downloads entire year worth of data
-    start: str, optional
-        Start date in YYYY-MM format (e.g. '2019-01')
-        Downloads entire month worth of data. Use with end parameter to download data from a range.
-    end: str, optional
-        End date in YYYY-MM format (e.g. '2020-12')
-        Used in conjunction with start parameter to download a range worth of available data.
+    download_folder: str
+        Folder to store downloaded files. If none is given, data is downloaded to current directory
+    package: str, optional
+        Specify either 'basic' or 'expanded' package. Downloaded as zipped folder.
     
     Notes
     -----
     If no year or start parameter is given, all available data will be downloaded for all years.
     It is recommended to include date parameters.
+    To download single month worth of data, only use the start parameter.
 
     Examples
     --------
@@ -236,12 +255,12 @@ def download_data(product, site, year=None, start=None, end=None,
         # urls for all data in year
         urls = list_available_urls_by_year(product,site,year)
         
-    if len(urls)==0:
+    if urls is None:
         print("No data available in time period.")
         return 1
     
     # Download data from urls
-    download_urls(urls, download_folder_root, package=package, zip=False,meta_only=None)
+    download_urls(urls, download_folder, package=package, zip=False,meta_only=None)
 
 
 # Utility function for AOP download

@@ -1,8 +1,8 @@
 <div align="center" >
 
-<!--
-![](https://github.com/blaylockbk/goes2go/blob/main/docs/_static/goes2go_logo_100dpi.png?raw=true)
--->
+
+![](https://github.com/arojas314/neonutilities/tree/main/docs/_source/_static/NEON_image.png?raw=true)
+
 
 # Download and display NEON data
 
@@ -17,11 +17,11 @@
 
 The National Science Foundation's National Ecological Observatory Network (NEON) offers ecological data from sites across the United States through the [NEON Data Portal](https://data.neonscience.org/). **neonutilities** is a python package that makes it easy to find and download data to your local computer. We also provide some additional utilities to visualize and analyze the data.
 
-<!-- <br>
+<br>
 
-# 📔 [GOES-2-go Documentation](https://blaylockbk.github.io/goes2go/_build/html/)
+📔 [neonutilities Documentation](https://arojas314.github.io/neonutilities/_build/html/)
 
-<br> -->
+<br>
 
 ---
 
@@ -29,9 +29,9 @@ The National Science Foundation's National Ecological Observatory Network (NEON)
 
 ## Download Data
 
-Download NEON data files to your local computer. Files can also be read with pandas.
+Download NEON data files to your local computer. Files can also be read into Pandas DataFrames.
 
-It's as simple as importing the neonutilities package and using the `download_data` function with the product ID.
+Downloading data locally is as simple as importing the neonutilities package and using the `download_data` function with the product ID.
 
 ```python
 import neonutilities as nu
