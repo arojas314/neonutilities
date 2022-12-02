@@ -10,6 +10,9 @@ import requests, urllib, os, re
 from datetime import datetime
 import geopandas as gpd
 from shapely import geometry
+import shutil
+import pandas as pd
+import tempfile
 
 def list_available_urls(product,site):
     """
@@ -373,3 +376,81 @@ def download_aop_files(data_product_id,site,year=None,download_folder='./data',p
                     except requests.exceptions.RequestException as e:
                         print(e)
 
+
+
+
+# Function for reading instrument data directly into pandas dataframe
+def get_instrument_data(product, site, start=None, end=None, tmi = None, outdir = None):
+
+    """
+    Get instrument data from eddy covariance (EC) tower
+
+    Parameters
+    -----------
+    product: str
+        The data product code (eg. 'DP1.00024.001')
+    site: str
+        The 4-digit NEON site code (eg. 'HARV', 'WERF')
+    start: str
+        Start date in YYYY-MM format (e.g. '2019-01')
+        Downloads entire month worth of data. Use with end parameter to download data from a range
+    end: str, optional
+        End date in YYYY-MM format (e.g. '2020-12')
+        Used in conjunction with start parameter to download a range of available data
+    tmi: int
+        Temporal index (tmi)for instrument data
+        (e.g. 1 for minute observations, 30 for 30 min, observations, etc.)
+    outdir: str, optional
+        Output directory for downloaded data. If left empty, data will not be saved.
+    
+    Returns
+    --------
+    DataFrame
+        Returns a Pandas DataFrame of all monthly data merged
+    
+    Examples
+    --------
+    >>> import neonutilities as nu
+    >>> par_data = get_instrument_data("DP1.00024.001", "HARV",
+                                        start="2020-01", end="2020-12", tmi = 30, outdir = "./NEON_PAR_HARV")
+    
+    """
+    # Make temp outdir if necessary
+    temp_odir_bool = False
+    if outdir is None:
+        temp_odir_bool = True
+        outdir = tempfile.mkdtemp()
+    elif not os.path.exists(outdir):
+        os.makedirs(outdir)
+            
+    # Download data
+    download_data(product, site, start=start, end=end,
+                year=None, download_folder=outdir,
+                package=None, zip=False, meta_only=None)
+    
+    # Get tmi as string
+    if tmi >= 10:
+        tmi = f"0{tmi}"
+    else:
+        tmi = f"00{tmi}"
+    
+    # Get all file names that have *basic* and the TMI, then add levels column
+    df_list = []
+    for dirpath, dirnames, filenames in os.walk("/data/shared/src/arojas/temp/NEON_par_HARV/NEON_par/NEON.D01.HARV.DP1.00024.001.2022-04.basic.20220503T155542Z.PROVISIONAL/"):
+        for filename in [f for f in filenames if "basic" in f]:
+            if filename.split(".")[8]==tmi:
+                # print(os.path.join(dirpath, filename))
+                instrument_data = pd.read_csv(os.path.join(dirpath, filename))
+                instrument_data['verticalPosition'] = int(filename.split(".")[7][1]) # get VRT from '060' -> '6'
+                df_list.append(instrument_data)
+
+    # merge data together!
+    is_df = pd.concat(df_list)
+    
+    # Clean up directory space
+    if temp_odir_bool:
+        shutil.rmtree(outdir)
+    
+    # return data
+    return is_df
+            
