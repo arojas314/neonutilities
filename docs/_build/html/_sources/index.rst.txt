@@ -51,7 +51,7 @@ There are methods to do the following:
 
 .. code-block:: python
 
-   # Download EC data and read directly into dataframe
+   # Download EC instrument data and read directly into dataframe
    par_data = get_instrument_data("DP1.00024.001", "HARV", start="2020-01", end="2020-12", tmi = 30, outdir = "./NEON_PAR_HARV")
 
 

@@ -337,7 +337,7 @@
 <span class="n">nu</span><span class="o">.</span><span class="n">download_aop_files</span><span class="p">(</span><span class="s1">&#39;DP1.30003.001&#39;</span><span class="p">,</span><span class="s1">&#39;HARV&#39;</span><span class="p">,</span><span class="s1">&#39;2019&#39;</span><span class="p">,</span><span class="s1">&#39;./data/HARV_2019/lidar&#39;</span><span class="p">,</span><span class="s1">&#39;./HARV_poly.shp&#39;</span><span class="p">)</span> <span class="c1"># Spatial data should be in local UTM zone!</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download EC data and read directly into dataframe</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download EC instrument data and read directly into dataframe</span>
 <span class="n">par_data</span> <span class="o">=</span> <span class="n">get_instrument_data</span><span class="p">(</span><span class="s2">&quot;DP1.00024.001&quot;</span><span class="p">,</span> <span class="s2">&quot;HARV&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2020-12&quot;</span><span class="p">,</span> <span class="n">tmi</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">outdir</span> <span class="o">=</span> <span class="s2">&quot;./NEON_PAR_HARV&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
