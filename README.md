@@ -4,7 +4,7 @@
 ![](https://github.com/arojas314/neonutilities/tree/main/docs/_source/_static/NEON_image.png?raw=true)
 
 
-# Download and display NEON data
+# Download and Display NEON Data
 
 <!-- Badges -->
 
@@ -37,5 +37,5 @@ Downloading data locally is as simple as importing the neonutilities package and
 import neonutilities as nu
 
 # Download short wave radiation data
-download_data('DP1.00024.001', "HARV", start="2019-01", end="2021-12")
+nu.download_data('DP1.00024.001', "HARV", start="2019-01", end="2021-12")
 ```
