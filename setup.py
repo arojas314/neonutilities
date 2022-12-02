@@ -6,10 +6,10 @@ README = (HERE / "README.md").read_text(encoding="utf8")
 
 setup(
     name="neonutilities",
-    version="2022.10.10",
+    version="0.0.1",
     author="Alex Rojas",
     author_email="a.rojas8907@gmail.com",
-    description="Retreive data from the NEON api. Also provideses some functionality to analyze and visualize eddy covariance data.",
+    description="Retreive data from the NEON api. Also provides some functionality to analyze and visualize eddy covariance data.",
     long_description=README,
     long_description_content_type="text/markdown",
     project_urls={
@@ -22,7 +22,7 @@ setup(
         "": ["*.cfg", "*.txt"],
     },
     # python_requires='>3.7',
-    install_requires=["numpy", "pandas", "geopandas", "urllib", "re"],
+    install_requires=["numpy", "pandas", "geopandas", "urllib", "re", "shapely"],
     keywords=["NEON", "ecology", "lidar", "hyperspectral"],
     classifiers=[
         "Development Status :: 1 - Beta",
@@ -47,8 +47,7 @@ setup(
 # Created a new conda environment with twine
 # conda create -n pypi python=3 twine pip -c conda-forge
 """
-conda activate pypi
-cd goes2go
+cd neonutilities
 python setup.py sdist bdist_wheel
 twine check dist/*
 # Test PyPI
@@ -60,6 +59,14 @@ twine upload --skip-existing dist/*
 
 #######################################################
 ## If you need to change the default branch (to main in this case)
+"""
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+"""
+#######################################################
+## {push updates to github}
 """
 git branch -m master main
 git fetch origin

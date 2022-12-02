@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>download_aop_files &#8212; neonutilities 0.1 documentation</title>
+    <title>get_instrument_data &#8212; neonutilities 0.1 documentation</title>
   
   
   
@@ -43,11 +43,10 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'api/neonutilities.api.download_aop_files';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/neonutilities.api.get_instrument_data';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="download_data" href="neonutilities.api.download_data.html" />
-    <link rel="prev" title="neonutilities API Submodule" href="../ref_api.html" />
+    <link rel="prev" title="download_data" href="neonutilities.api.download_data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -285,9 +284,9 @@
   </p>
   <div class="bd-toc-item navbar-nav">
     <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">download_aop_files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neonutilities.api.download_aop_files.html">download_aop_files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="neonutilities.api.download_data.html">download_data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="neonutilities.api.get_instrument_data.html">get_instrument_data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">get_instrument_data</a></li>
 </ul>
 
   </div>
@@ -319,29 +318,37 @@
             
             <article class="bd-article" role="main">
               
-  <section id="download-aop-files">
-<h1>download_aop_files<a class="headerlink" href="#download-aop-files" title="Permalink to this heading">#</a></h1>
+  <section id="get-instrument-data">
+<h1>get_instrument_data<a class="headerlink" href="#get-instrument-data" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="neonutilities.api.download_aop_files">
-<span class="sig-prename descclassname"><span class="pre">neonutilities.api.</span></span><span class="sig-name descname"><span class="pre">download_aop_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_product_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neonutilities/api/neon_download_functions.html#download_aop_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#neonutilities.api.download_aop_files" title="Permalink to this definition">#</a></dt>
-<dd><p>Get NEON AOP data.</p>
+<dt class="sig sig-object py" id="neonutilities.api.get_instrument_data">
+<span class="sig-prename descclassname"><span class="pre">neonutilities.api.</span></span><span class="sig-name descname"><span class="pre">get_instrument_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">product</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neonutilities/api/neon_download_functions.html#get_instrument_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#neonutilities.api.get_instrument_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Get instrument data from eddy covariance (EC) tower</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_product_id</strong> (<em>str</em>) – The data product code (eg. ‘DP1.30003.001’ - Discrete Lidar)</p></li>
-<li><p><strong>site</strong> (<em>str</em>) – the 4-digit NEON site code (eg. ‘HARV’, ‘WERF’)</p></li>
-<li><p><strong>year</strong> (<em>str</em><em>, </em><em>optional</em>) – Year (eg. ‘2020’); default (None) is all years</p></li>
-<li><p><strong>download_folder</strong> (<em>str</em><em>, </em><em>optional</em>) – Folder to store downloaded files; default (./data) in current directory</p></li>
-<li><p><strong>poly</strong> (<em>str</em><em> or </em><em>GeoDataFrame</em><em>, </em><em>optional</em>) – Area of interest to filter through AOP tiles (shapefile or geodataframe); default None
-(polygon needs to be in proper UTM for site!)</p></li>
+<li><p><strong>product</strong> (<em>str</em>) – The data product code (eg. ‘DP1.00024.001’)</p></li>
+<li><p><strong>site</strong> (<em>str</em>) – The 4-digit NEON site code (eg. ‘HARV’, ‘WERF’)</p></li>
+<li><p><strong>start</strong> (<em>str</em>) – Start date in YYYY-MM format (e.g. ‘2019-01’)
+Downloads entire month worth of data. Use with end parameter to download data from a range</p></li>
+<li><p><strong>end</strong> (<em>str</em><em>, </em><em>optional</em>) – End date in YYYY-MM format (e.g. ‘2020-12’)
+Used in conjunction with start parameter to download a range of available data</p></li>
+<li><p><strong>tmi</strong> (<em>int</em>) – Temporal index (tmi)for instrument data
+(e.g. 1 for minute observations, 30 for 30 min, observations, etc.)</p></li>
+<li><p><strong>outdir</strong> (<em>str</em><em>, </em><em>optional</em>) – Output directory for downloaded data. If left empty, data will not be saved.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns a Pandas DataFrame of all monthly data merged</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>Currently, spatial subsetting only works on mosaiced files. This generally refers to discrete return lidar and level 3 spectrometer products.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">neonutilities</span> <span class="k">as</span> <span class="nn">nu</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">nu</span><span class="o">.</span><span class="n">download_aop_files</span><span class="p">(</span><span class="s1">&#39;DP1.30003.001&#39;</span><span class="p">,</span><span class="s1">&#39;HARV&#39;</span><span class="p">,</span><span class="s1">&#39;2019&#39;</span><span class="p">,</span><span class="s1">&#39;./data/HARV_2019/lidar&#39;</span><span class="p">,</span><span class="s1">&#39;./HARV_poly.shp&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">par_data</span> <span class="o">=</span> <span class="n">get_instrument_data</span><span class="p">(</span><span class="s2">&quot;DP1.00024.001&quot;</span><span class="p">,</span> <span class="s2">&quot;HARV&quot;</span><span class="p">,</span>
+<span class="go">                                    start=&quot;2020-01&quot;, end=&quot;2020-12&quot;, tmi = 30, outdir = &quot;./NEON_PAR_HARV&quot;)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -356,19 +363,12 @@
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="../ref_api.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="neonutilities.api.download_data.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">neonutilities API Submodule</p>
+          <p class="prev-next-title">download_data</p>
       </div>
-  </a>
-  <a class='right-next' id="next-link" href="neonutilities.api.download_data.html" title="next page">
-  <div class="prev-next-info">
-      <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">download_data</p>
-  </div>
-  <i class="fa-solid fa-angle-right"></i>
   </a>
 </div>
             </footer>
@@ -387,10 +387,10 @@
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neonutilities.api.download_aop_files">
+  <a class="reference internal nav-link" href="#neonutilities.api.get_instrument_data">
    <code class="docutils literal notranslate">
     <span class="pre">
-     download_aop_files()
+     get_instrument_data()
     </span>
    </code>
   </a>
@@ -412,7 +412,7 @@
 <div class="toc-item">
   
 <div class="tocsection sourcelink">
-    <a href="../_sources/api/neonutilities.api.download_aop_files.rst.txt">
+    <a href="../_sources/api/neonutilities.api.get_instrument_data.rst.txt">
         <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
 </div>

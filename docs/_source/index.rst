@@ -21,18 +21,39 @@ neonutilities Documentation
 
 Install
 -------
-Install neonutilities in a conda environment. You may use this minimum
-
-
+Install neonutilities in a conda environment.
 
 Capabilities
 ------------
-
 Download and Read Data
 ^^^^^^^^^^^^^^^^^^^^^^
 
-RGB Recipes for ABI
-^^^^^^^^^^^^^^^^^^^
+First, download some PAR data and save to a directory.
+
+.. code-block:: python
+
+   # Download PAR data
+   import neonutilities as nu
+   nu.download_data('DP1.00024.001', "HARV", start="2019-01", end="2019-02", download_folder="./data")
+
+.. note::
+   A complete listing of the products available are available at `here <https://data.neonscience.org/data-products/explore>`_.
+
+There are methods to do the following:
+
+* Download aerial observation platform (AOP) remote sensing data for a given area
+* Download and read eddy covariance (EC) instrument data directly into a Pandas DataFrame
+
+.. code-block:: python
+
+   # Download AOP data
+   nu.download_aop_files('DP1.30003.001','HARV','2019','./data/HARV_2019/lidar','./HARV_poly.shp') # Spatial data should be in local UTM zone!
+
+.. code-block:: python
+
+   # Download EC instrument data and read directly into dataframe
+   par_data = get_instrument_data("DP1.00024.001", "HARV", start="2020-01", end="2020-12", tmi = 30, outdir = "./NEON_PAR_HARV")
+
 
 
 Indices and tables

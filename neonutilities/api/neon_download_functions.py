@@ -205,7 +205,7 @@ def download_urls(urls, download_folder_root=None, package=None, zip=False,meta_
 
 def download_data(product, site, start=None, end=None,
                 year=None, download_folder=None,
-                package=None, zip=False, meta_only=None):
+                package=None):
 
     """
     Download data from a given data product 
@@ -239,7 +239,7 @@ def download_data(product, site, start=None, end=None,
     Examples
     --------
     >>> import neonutilities as nu
-    >>> nu.download_data('DP1.00024.001', "HARV", start="2019-01", end="2019-02", download_folder_root="./data", package="basic")
+    >>> nu.download_data('DP1.00024.001', "HARV", start="2019-01", end="2019-02", download_folder="./data")
     """
     
     # Get urls

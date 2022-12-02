@@ -1,0 +1,47 @@
+name: neonutilities
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.9
+  - pip
+  - git
+
+  # -----
+  # Tools
+  # -----
+  - shapely
+  - geopandas
+  - h5py
+  - numpy
+  - pandas
+
+  # -------------------
+  # Formatter & Testing
+  # -------------------
+  - pytest
+
+#     - pip:
+      # Borrow some tools from my github
+#      - git+https://github.com/arojs314/utils.git
+###############################################################################
+#
+# Note: Being more specific with versions *may* help speed up conda
+# creating/updating environments
+# https://www.anaconda.com/blog/understanding-and-improving-condas-performance
+#
+###############################################################################
+#
+# To create this environment
+#
+#     wget https://github.com/arojas314/neonutilities/environment.yml
+#     conda env create -f environment.yml
+#
+# To update this environment
+#
+#     conda env update -f environment.yml --prune
+#
+# To remove this environment
+#
+#     conda env remove --name environment
+#
+###############################################################################
