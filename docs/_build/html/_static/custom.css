@@ -1,7 +1,7 @@
 /* Add custom css styles to override original theme*/
 
-.bd-header.navbar-light#navbar-main {
-    background-color:  #bbd0ff!important;
+.bd-header {
+    background-color:  #bfd3ff!important;
   }
   
 h1, h2 {

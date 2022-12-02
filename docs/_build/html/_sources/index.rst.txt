@@ -14,14 +14,20 @@ neonutilities Documentation
    :caption: Contents:
 
    API Reference<ref_api.rst>
-	
+
 ..
-	User Guide</user_guide/index>
-   
+	User Guide</user_guide/index>   
 
 Install
 -------
-Install neonutilities in a conda environment.
+
+The easiest way to install ``neonutilities`` and its dependencies is with pip.
+
+.. code:: bash
+
+   conda activate myenv
+   pip install git+https://github.com/arojas314/neonutilities.git
+
 
 Capabilities
 ------------
