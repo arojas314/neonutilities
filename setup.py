@@ -22,7 +22,7 @@ setup(
         "": ["*.cfg", "*.txt"],
     },
     # python_requires='>3.7',
-    install_requires=["numpy", "pandas", "geopandas", "urllib", "re", "shapely"],
+    install_requires=["numpy", "pandas", "geopandas", "shapely"],
     keywords=["NEON", "ecology", "lidar", "hyperspectral"],
     classifiers=[
         "Development Status :: 1 - Beta",
