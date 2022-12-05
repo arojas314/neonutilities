@@ -239,7 +239,7 @@ def download_data(product, site, start=None, end=None,
     Examples
     --------
     >>> import neonutilities as nu
-    >>> nu.download_data('DP1.00024.001', "HARV", start="2019-01", end="2019-02", download_folder="./data")
+    >>> nu.api.download_data('DP1.00024.001', "HARV", start="2019-01", end="2019-02", download_folder="./data")
     """
     
     # Get urls
@@ -277,7 +277,7 @@ def DownloadFile(url,filename):
 
 def download_aop_files(data_product_id,site,year=None,download_folder='./data',poly=None, download_all=False):
     """
-    Get NEON AOP data.
+    Get NEON aerial observation platform (AOP) data.
 
     Parameters
     ----------
@@ -300,7 +300,7 @@ def download_aop_files(data_product_id,site,year=None,download_folder='./data',p
     Examples
     --------
     >>> import neonutilities as nu
-    >>> nu.download_aop_files('DP1.30003.001','HARV','2019','./data/HARV_2019/lidar','./HARV_poly.shp')
+    >>> nu.api.download_aop_files('DP1.30003.001','HARV','2019','./data/HARV_2019/lidar','./HARV_poly.shp')
     """
     
     #get a list of the urls for a given data product, site, and year (if included)
@@ -411,8 +411,8 @@ def get_instrument_data(product, site, start=None, end=None, tmi = None, outdir 
     Examples
     --------
     >>> import neonutilities as nu
-    >>> par_data = get_instrument_data("DP1.00024.001", "HARV",
-                                        start="2020-01", end="2020-12", tmi = 30, outdir = "./NEON_PAR_HARV")
+    >>> par_data = nu.api.get_instrument_data("DP1.00024.001", "HARV",
+    >>>                                       start="2020-01", end="2020-12", tmi = 30, outdir = "./NEON_PAR_HARV")
     
     """
     # Make temp outdir if necessary

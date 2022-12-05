@@ -89,7 +89,8 @@ html_theme_options = {
     "github_url": "https://github.com/arojas314",
     "twitter_url": "https://twitter.com/arojas314",
     "navbar_end": ["navbar-icon-links.html", "search-field.html"],
-    "show_toc_level": 1,
+    "show_toc_level": 1
+    # "navigation_with_keys": False,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -121,7 +122,7 @@ autodoc_default_options = {
 """
 IMPORTANT NOTES ABOUT PUBLISHING TO GITHUB PAGES
 -----------------------------------------------
-1. Must have an empty file called .nojekell in this directory.
+1. Must have an empty file called .nojekyll in this directory.
 2. Include an index.html file to redirect to the actual html build
    Something like this in that file (yes, only one line)...
         <meta http-equiv="Refresh" content="0;url=_build/html/"/>

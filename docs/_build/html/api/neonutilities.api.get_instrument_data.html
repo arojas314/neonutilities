@@ -347,8 +347,8 @@ Used in conjunction with start parameter to download a range of available data</
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">neonutilities</span> <span class="k">as</span> <span class="nn">nu</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">par_data</span> <span class="o">=</span> <span class="n">get_instrument_data</span><span class="p">(</span><span class="s2">&quot;DP1.00024.001&quot;</span><span class="p">,</span> <span class="s2">&quot;HARV&quot;</span><span class="p">,</span>
-<span class="go">                                    start=&quot;2020-01&quot;, end=&quot;2020-12&quot;, tmi = 30, outdir = &quot;./NEON_PAR_HARV&quot;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">par_data</span> <span class="o">=</span> <span class="n">nu</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_instrument_data</span><span class="p">(</span><span class="s2">&quot;DP1.00024.001&quot;</span><span class="p">,</span> <span class="s2">&quot;HARV&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                                      <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2020-12&quot;</span><span class="p">,</span> <span class="n">tmi</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">outdir</span> <span class="o">=</span> <span class="s2">&quot;./NEON_PAR_HARV&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

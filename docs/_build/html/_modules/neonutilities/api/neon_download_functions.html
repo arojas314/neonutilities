@@ -541,7 +541,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import neonutilities as nu</span>
-<span class="sd">    &gt;&gt;&gt; nu.download_data(&#39;DP1.00024.001&#39;, &quot;HARV&quot;, start=&quot;2019-01&quot;, end=&quot;2019-02&quot;, download_folder=&quot;./data&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; nu.api.download_data(&#39;DP1.00024.001&#39;, &quot;HARV&quot;, start=&quot;2019-01&quot;, end=&quot;2019-02&quot;, download_folder=&quot;./data&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1"># Get urls</span>
@@ -579,7 +579,7 @@
 
 <div class="viewcode-block" id="download_aop_files"><a class="viewcode-back" href="../../../api/neonutilities.api.download_aop_files.html#neonutilities.api.download_aop_files">[docs]</a><span class="k">def</span> <span class="nf">download_aop_files</span><span class="p">(</span><span class="n">data_product_id</span><span class="p">,</span><span class="n">site</span><span class="p">,</span><span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">download_folder</span><span class="o">=</span><span class="s1">&#39;./data&#39;</span><span class="p">,</span><span class="n">poly</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_all</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get NEON AOP data.</span>
+<span class="sd">    Get NEON aerial observation platform (AOP) data.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -602,7 +602,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import neonutilities as nu</span>
-<span class="sd">    &gt;&gt;&gt; nu.download_aop_files(&#39;DP1.30003.001&#39;,&#39;HARV&#39;,&#39;2019&#39;,&#39;./data/HARV_2019/lidar&#39;,&#39;./HARV_poly.shp&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; nu.api.download_aop_files(&#39;DP1.30003.001&#39;,&#39;HARV&#39;,&#39;2019&#39;,&#39;./data/HARV_2019/lidar&#39;,&#39;./HARV_poly.shp&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1">#get a list of the urls for a given data product, site, and year (if included)</span>
@@ -713,8 +713,8 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import neonutilities as nu</span>
-<span class="sd">    &gt;&gt;&gt; par_data = get_instrument_data(&quot;DP1.00024.001&quot;, &quot;HARV&quot;,</span>
-<span class="sd">                                        start=&quot;2020-01&quot;, end=&quot;2020-12&quot;, tmi = 30, outdir = &quot;./NEON_PAR_HARV&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; par_data = nu.api.get_instrument_data(&quot;DP1.00024.001&quot;, &quot;HARV&quot;,</span>
+<span class="sd">    &gt;&gt;&gt;                                       start=&quot;2020-01&quot;, end=&quot;2020-12&quot;, tmi = 30, outdir = &quot;./NEON_PAR_HARV&quot;)</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Make temp outdir if necessary</span>

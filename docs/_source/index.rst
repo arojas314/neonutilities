@@ -40,7 +40,7 @@ First, download some PAR data and save to a directory.
 
    # Download PAR data
    import neonutilities as nu
-   nu.download_data('DP1.00024.001', "HARV", start="2019-01", end="2019-02", download_folder="./data")
+   nu.api.download_data('DP1.00024.001', "HARV", start="2019-01", end="2019-02", download_folder="./data")
 
 .. note::
    A complete listing of the products available are available at `here <https://data.neonscience.org/data-products/explore>`_.
@@ -53,12 +53,12 @@ There are methods to do the following:
 .. code-block:: python
 
    # Download AOP data
-   nu.download_aop_files('DP1.30003.001','HARV','2019','./data/HARV_2019/lidar','./HARV_poly.shp') # Spatial data should be in local UTM zone!
+   nu.api.download_aop_files('DP1.30003.001','HARV','2019','./data/HARV_2019/lidar','./HARV_poly.shp') # Spatial data should be in local UTM zone!
 
 .. code-block:: python
 
    # Download EC instrument data and read directly into dataframe
-   par_data = get_instrument_data("DP1.00024.001", "HARV", start="2020-01", end="2020-12", tmi = 30, outdir = "./NEON_PAR_HARV")
+   par_data = nu.api.get_instrument_data("DP1.00024.001", "HARV", start="2020-01", end="2020-12", tmi = 30, outdir = "./NEON_PAR_HARV")
 
 
 
