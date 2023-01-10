@@ -317,7 +317,7 @@
 <span class="kn">import</span> <span class="nn">tempfile</span>
 
 <span class="k">def</span> <span class="nf">list_available_urls</span><span class="p">(</span><span class="n">product</span><span class="p">,</span><span class="n">site</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get a list of all available urls for a data product.</span>
 
 <span class="sd">    Parameters</span>
@@ -344,7 +344,7 @@
         <span class="k">return</span> <span class="n">data_urls</span>
 
 <span class="k">def</span> <span class="nf">list_available_urls_by_year</span><span class="p">(</span><span class="n">product</span><span class="p">,</span><span class="n">site</span><span class="p">,</span><span class="n">year</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get a list of urls for a year.</span>
 
 <span class="sd">    Parameters</span>
@@ -374,7 +374,7 @@
 
 <span class="k">def</span> <span class="nf">list_available_urls_by_range</span><span class="p">(</span><span class="n">product</span><span class="p">,</span><span class="n">site</span><span class="p">,</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">):</span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get a list of urls for a given date range.</span>
 
 <span class="sd">    Parameters</span>
@@ -413,7 +413,7 @@
         <span class="k">return</span> <span class="n">data_urls</span>
 
 <span class="k">def</span> <span class="nf">download_urls</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="n">download_folder_root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">zip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">meta_only</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Download data using a list of urls.</span>
 
 <span class="sd">    Parameters</span>
@@ -509,7 +509,7 @@
                 <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">package</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Download data from a given data product </span>
 
 <span class="sd">    Parameters</span>
@@ -578,7 +578,7 @@
     <span class="k">return</span> 
 
 <div class="viewcode-block" id="download_aop_files"><a class="viewcode-back" href="../../../api/neonutilities.api.download_aop_files.html#neonutilities.api.download_aop_files">[docs]</a><span class="k">def</span> <span class="nf">download_aop_files</span><span class="p">(</span><span class="n">data_product_id</span><span class="p">,</span><span class="n">site</span><span class="p">,</span><span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">download_folder</span><span class="o">=</span><span class="s1">&#39;./data&#39;</span><span class="p">,</span><span class="n">poly</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_all</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get NEON aerial observation platform (AOP) data.</span>
 
 <span class="sd">    Parameters</span>
@@ -684,7 +684,7 @@
 <span class="c1"># Function for reading instrument data directly into pandas dataframe</span>
 <div class="viewcode-block" id="get_instrument_data"><a class="viewcode-back" href="../../../api/neonutilities.api.get_instrument_data.html#neonutilities.api.get_instrument_data">[docs]</a><span class="k">def</span> <span class="nf">get_instrument_data</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tmi</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outdir</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get instrument data from eddy covariance (EC) tower</span>
 
 <span class="sd">    Parameters</span>
@@ -728,7 +728,7 @@
     <span class="c1"># Download data</span>
     <span class="n">download_data</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span>
                 <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">download_folder</span><span class="o">=</span><span class="n">outdir</span><span class="p">,</span>
-                <span class="n">package</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">zip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">meta_only</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+                <span class="n">package</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     
     <span class="c1"># Get tmi as string</span>
     <span class="k">if</span> <span class="n">tmi</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
@@ -738,12 +738,12 @@
     
     <span class="c1"># Get all file names that have *basic* and the TMI, then add levels column</span>
     <span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s2">&quot;/data/shared/src/arojas/temp/NEON_par_HARV/NEON_par/NEON.D01.HARV.DP1.00024.001.2022-04.basic.20220503T155542Z.PROVISIONAL/&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">outdir</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span> <span class="k">if</span> <span class="s2">&quot;basic&quot;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">8</span><span class="p">]</span><span class="o">==</span><span class="n">tmi</span><span class="p">:</span>
                 <span class="c1"># print(os.path.join(dirpath, filename))</span>
                 <span class="n">instrument_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
-                <span class="n">instrument_data</span><span class="p">[</span><span class="s1">&#39;verticalPosition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">7</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># get VRT from &#39;060&#39; -&gt; &#39;6&#39;</span>
+                <span class="n">instrument_data</span><span class="p">[</span><span class="s1">&#39;verticalPosition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">7</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># get VRT e.g. from &#39;060&#39; -&gt; &#39;6&#39;</span>
                 <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instrument_data</span><span class="p">)</span>
 
     <span class="c1"># merge data together!</span>

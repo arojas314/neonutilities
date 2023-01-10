@@ -426,7 +426,7 @@ def get_instrument_data(product, site, start=None, end=None, tmi = None, outdir 
     # Download data
     download_data(product, site, start=start, end=end,
                 year=None, download_folder=outdir,
-                package=None, zip=False, meta_only=None)
+                package=None)
     
     # Get tmi as string
     if tmi >= 10:
@@ -436,12 +436,12 @@ def get_instrument_data(product, site, start=None, end=None, tmi = None, outdir 
     
     # Get all file names that have *basic* and the TMI, then add levels column
     df_list = []
-    for dirpath, dirnames, filenames in os.walk("/data/shared/src/arojas/temp/NEON_par_HARV/NEON_par/NEON.D01.HARV.DP1.00024.001.2022-04.basic.20220503T155542Z.PROVISIONAL/"):
+    for dirpath, dirnames, filenames in os.walk(outdir):
         for filename in [f for f in filenames if "basic" in f]:
             if filename.split(".")[8]==tmi:
                 # print(os.path.join(dirpath, filename))
                 instrument_data = pd.read_csv(os.path.join(dirpath, filename))
-                instrument_data['verticalPosition'] = int(filename.split(".")[7][1]) # get VRT from '060' -> '6'
+                instrument_data['verticalPosition'] = int(filename.split(".")[7][1]) # get VRT e.g. from '060' -> '6'
                 df_list.append(instrument_data)
 
     # merge data together!
