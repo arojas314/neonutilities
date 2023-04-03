@@ -300,12 +300,20 @@
             <article class="bd-article" role="main">
               
   <h1>Source code for neonutilities.api.neon_download_functions</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Originaly created on Mon Apr  8 08:18:00 2019</span>
-<span class="sd">@author: bhass</span>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="sd">Updated by AR 9.20</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">=========================================</span>
+<span class="sd">NEON API Download and Read Data Utilities</span>
+<span class="sd">=========================================</span>
+<span class="sd">This module provides a number of objects (mostly functions) useful for</span>
+<span class="sd">downloading NEON instrumented systems (IS) and Airborne Observation Platform (AOP) Data.</span>
+<span class="sd">Some other utilities are provided to read data.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">---------</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">urllib</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">re</span>
@@ -685,7 +693,9 @@
 <div class="viewcode-block" id="get_instrument_data"><a class="viewcode-back" href="../../../api/neonutilities.api.get_instrument_data.html#neonutilities.api.get_instrument_data">[docs]</a><span class="k">def</span> <span class="nf">get_instrument_data</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tmi</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outdir</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get instrument data from eddy covariance (EC) tower</span>
+<span class="sd">    Get NEON instrumented systems (IS) data files.</span>
+<span class="sd">    This includes data from the eddy covariance (EC) tower</span>
+<span class="sd">    and the sensor-based soil plots.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    -----------</span>
@@ -717,6 +727,7 @@
 <span class="sd">    &gt;&gt;&gt;                                       start=&quot;2020-01&quot;, end=&quot;2020-12&quot;, tmi = 30, outdir = &quot;./NEON_PAR_HARV&quot;)</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="c1"># Make temp outdir if necessary</span>
     <span class="n">temp_odir_bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="n">outdir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -736,14 +747,17 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">tmi</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;00</span><span class="si">{</span><span class="n">tmi</span><span class="si">}</span><span class="s2">&quot;</span>
     
-    <span class="c1"># Get all file names that have *basic* and the TMI, then add levels column</span>
+    <span class="c1"># Get all file names that have *basic* and the TMI, then HOR and VER offset</span>
+    <span class="c1"># Instrumented systems (IS) data file names are saved as:</span>
+    <span class="c1"># NEON.DOM.SITE.DPL.PRNUM.REV.HOR.VER.TMI.DESC.YYYY-MM.PKGTYPE.GENTIME</span>
     <span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">outdir</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span> <span class="k">if</span> <span class="s2">&quot;basic&quot;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">8</span><span class="p">]</span><span class="o">==</span><span class="n">tmi</span><span class="p">:</span>
                 <span class="c1"># print(os.path.join(dirpath, filename))</span>
                 <span class="n">instrument_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
-                <span class="n">instrument_data</span><span class="p">[</span><span class="s1">&#39;verticalPosition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">7</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># get VRT e.g. from &#39;060&#39; -&gt; &#39;6&#39;</span>
+                <span class="n">instrument_data</span><span class="p">[</span><span class="s1">&#39;horizontalPosition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">6</span><span class="p">])</span> <span class="c1"># get HOR</span>
+                <span class="n">instrument_data</span><span class="p">[</span><span class="s1">&#39;verticalPosition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">7</span><span class="p">])</span> <span class="c1"># get VER e.g. from &#39;060&#39;</span>
                 <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instrument_data</span><span class="p">)</span>
 
     <span class="c1"># merge data together!</span>

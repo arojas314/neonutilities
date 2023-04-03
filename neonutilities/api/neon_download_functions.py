@@ -1,9 +1,17 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-Originaly created on Mon Apr  8 08:18:00 2019
-@author: bhass
 
-Updated by AR 9.20
+"""
+=========================================
+NEON API Download and Read Data Utilities
+=========================================
+This module provides a number of objects (mostly functions) useful for
+downloading NEON instrumented systems (IS) and Airborne Observation Platform (AOP) Data.
+Some other utilities are provided to read data.
+
+Functions
+---------
+
 """
 
 import requests, urllib, os, re
@@ -383,7 +391,9 @@ def download_aop_files(data_product_id,site,year=None,download_folder='./data',p
 def get_instrument_data(product, site, start=None, end=None, tmi = None, outdir = None):
 
     """
-    Get instrument data from eddy covariance (EC) tower
+    Get NEON instrumented systems (IS) data files.
+    This includes data from the eddy covariance (EC) tower
+    and the sensor-based soil plots.
 
     Parameters
     -----------
@@ -415,6 +425,7 @@ def get_instrument_data(product, site, start=None, end=None, tmi = None, outdir 
     >>>                                       start="2020-01", end="2020-12", tmi = 30, outdir = "./NEON_PAR_HARV")
     
     """
+    
     # Make temp outdir if necessary
     temp_odir_bool = False
     if outdir is None:
@@ -426,7 +437,7 @@ def get_instrument_data(product, site, start=None, end=None, tmi = None, outdir 
     # Download data
     download_data(product, site, start=start, end=end,
                 year=None, download_folder=outdir,
-                package=None)
+                package="basic")
     
     # Get tmi as string
     if tmi >= 10:
@@ -434,18 +445,35 @@ def get_instrument_data(product, site, start=None, end=None, tmi = None, outdir 
     else:
         tmi = f"00{tmi}"
     
-    # Get all file names that have *basic* and the TMI, then add levels column
+    # Get all file names that have *basic* and the TMI, then HOR and VER offset
+    # Instrumented systems (IS) data file names are saved as:
+    # NEON.DOM.SITE.DPL.PRNUM.REV.HOR.VER.TMI.DESC.YYYY-MM.PKGTYPE.GENTIME
+    sensors_switch = False
+    sensors_df = None
     df_list = []
     for dirpath, dirnames, filenames in os.walk(outdir):
-        for filename in [f for f in filenames if "basic" in f]:
-            if filename.split(".")[8]==tmi:
-                # print(os.path.join(dirpath, filename))
-                instrument_data = pd.read_csv(os.path.join(dirpath, filename))
-                instrument_data['verticalPosition'] = int(filename.split(".")[7][1]) # get VRT e.g. from '060' -> '6'
-                df_list.append(instrument_data)
+        for filename in filenames:
+            if "basic" in filename:
+                if filename.split(".")[8]==tmi:
+                    # print(os.path.join(dirpath, filename))
+                    instrument_data = pd.read_csv(os.path.join(dirpath, filename))
+                    instrument_data['HOR.VER'] = filename.split(".")[6] + "." + filename.split(".")[7]
+                    instrument_data['HOR'] = filename.split(".")[6] # get HOR
+                    instrument_data['VER'] = filename.split(".")[7] # get VER e.g. from '060'
+                    df_list.append(instrument_data)
+            elif ("sensor_positions" in filename) and (sensors_switch is False):
+                sensors_df = pd.read_csv(os.path.join(dirpath, filename),dtype={'HOR.VER': 'object'})
+                sensors_switch = True
 
     # merge data together!
     is_df = pd.concat(df_list)
+
+    # If sensor position file, add x,y,z offset data to instrument_data
+    if sensors_df is not None:
+        is_df = pd.merge(is_df, sensors_df[['HOR.VER','xOffset','yOffset','zOffset']],
+        how="left",
+        on="HOR.VER"
+        )
     
     # Clean up directory space
     if temp_odir_bool:
